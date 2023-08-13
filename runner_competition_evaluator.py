@@ -81,7 +81,7 @@ def suppress_warnings():
 
 def main():
     suppress_warnings()
-    agent_class = PIDAgent; #to rewrite waypoints change to waypoint_generating_agent | Original PIDFastAgent
+    agent_class = PIDFastAgent; #to rewrite waypoints change to waypoint_generating_agent | Original PIDFastAgent
     num_trials = 1
     total_score_array = []
     num_laps = 1
