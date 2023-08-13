@@ -10,7 +10,7 @@ from typing import Tuple
 from prettytable import PrettyTable
 from ROAR.agent_module.michael_pid_agent import PIDAgent
 from ROAR.agent_module.pid_fast_agent import PIDFastAgent
-
+#from ROAR.agent_module.special_agents.waypoint_generating_agent import WaypointGeneratigAgent
 
 
 def compute_score(carla_runner: CarlaRunner) -> Tuple[float, int, int]:
@@ -61,7 +61,7 @@ def run(agent_class, agent_config_file_path: Path, carla_config_file_path: Path,
     try:
         my_vehicle = carla_runner.set_carla_world()
         agent = agent_class(vehicle=my_vehicle, agent_settings=agent_config)
-        carla_runner.start_game_loop(agent=agent, use_manual_control=False)
+        carla_runner.start_game_loop(agent=agent, use_manual_control=False) #set manual control to true/false
         return compute_score(carla_runner)
     except Exception as e:
         print(f"something bad happened during initialization: {e}")
@@ -81,7 +81,7 @@ def suppress_warnings():
 
 def main():
     suppress_warnings()
-    agent_class = PIDFastAgent
+    agent_class = PIDAgent; #to rewrite waypoints change to waypoint_generating_agent | Original PIDFastAgent
     num_trials = 1
     total_score_array = []
     num_laps = 1
